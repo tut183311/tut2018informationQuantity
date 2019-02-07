@@ -84,30 +84,24 @@ public class InformationEstimator implements InformationEstimatorInterface {
       partition[myTarget.length] = true;
 
       // Compute Information Quantity for the partition, in "value1"
-      // value1 = IQ(#"ab")+IQ(#"cde")+IQ(#"fg") for the above example
       double value1 = (double) 0.0;
       int end = 0;
-      
+
       int start = end;
       while (start < myTarget.length) {
-        // System.out.write(myTarget[end]);
         end++;
-        ;
         while (partition[end] == false) {
-          // System.out.write(myTarget[end]);
           end++;
         }
-        // System.out.print("("+start+","+end+")");
         value1 = value1 + iqSave[start][end];
         start = end;
       }
-      // System.out.println(" "+ value1);
-
       // Get the minimal value in "value"
       if (value1 < value)
         value = value1;
     }
     return value;
+
   }
 
   public static void main(String[] args) {

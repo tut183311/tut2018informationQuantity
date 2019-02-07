@@ -128,7 +128,6 @@ public class TestCase {
 	    myObject = new InformationEstimator();
 	    myObject.setSpace("3210321001230123".getBytes());
 		value = myObject.estimation();
-		if(value != 0.0){}
 		myObject.setTarget("0".getBytes());
 		if((value < 1.9999) || (2.0001 <value)) { System.out.println("IQ for 0 in 3210321001230123 should be 2.0. But it returns "+value); c++; }
 	    myObject.setTarget("01".getBytes());
