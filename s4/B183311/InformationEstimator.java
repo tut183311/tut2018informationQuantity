@@ -93,6 +93,7 @@ public class InformationEstimator implements InformationEstimatorInterface {
       partition[0] = true; // I know that this is not needed, but..
       for (int i = 0; i < myTarget.length - 1; i++) {
         partition[i + 1] = (0 != ((1 << i) & p));
+        //System.out.println(partition[i+1]);
       }
       partition[myTarget.length] = true;
 
