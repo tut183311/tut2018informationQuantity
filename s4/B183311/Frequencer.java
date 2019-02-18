@@ -179,13 +179,26 @@ public class Frequencer implements FrequencerInterface {
 		// Please note suffix_6 is "Ho Hi Ho", and "Ho " starts from here.
 		//
 		// **** Please write code here... ***
-		for (int i = 0; i < suffixArray.length; i++) {
-			int result = targetCompare(i, start, end);
-			if (result == 0) {
-				return i;
+
+		int l = 0;
+		int h = suffixArray.length;
+		int i = suffixArray.length;
+
+		while (l < h) {
+			int m = (l + h) / 2;
+			int tmp = targetCompare(m, start, end);
+			if (tmp == 0) {
+				if (m < i) {
+					i = m;
+				}
+				h = m;
+			} else if (tmp == -1) {
+				l = m + 1;
+			} else {
+				h = m - 1;
 			}
 		}
-		return suffixArray.length; // This line should be modified.
+		return i;
 	}
 
 	private int subByteEndIndex(int start, int end) {
@@ -199,13 +212,26 @@ public class Frequencer implements FrequencerInterface {
 		// Whereas suffix_5 is "Ho Hi Ho", which starts "Ho" and "Ho ".
 		//
 		// **** Please write code here... ***
-		for (int i = subByteStartIndex(start, end); i < suffixArray.length; i++) {
-			int result = targetCompare(i, start, end);
-			if (result != 0) {
-				return i;
+
+		int l = subByteStartIndex(start, end);
+		int h = suffixArray.length;
+		int i = suffixArray.length;
+
+		while (l < h) {
+			int m = (l + h) / 2;
+			int tmp = targetCompare(m, start, end);
+			if (tmp == 0) {
+				l = m + 1;
+			} else if (tmp == 1) {
+				if (m < i) {
+					i = m;
+				}
+				h = m;
+			} else {
+				h = m + 1;
 			}
 		}
-		return suffixArray.length; // This line should be modified.
+		return i;
 	}
 
 	public int subByteFrequency(int start, int end) {
